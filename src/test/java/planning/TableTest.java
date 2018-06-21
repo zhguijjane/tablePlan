@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThatThrownBy;
 
 public class TableTest {
 
@@ -52,5 +53,30 @@ public class TableTest {
         mainMeals.put(MainMeal.FISH, 7);
 
         assertThat(Table.order(orders)).isEqualTo(mainMeals);
+    }
+
+    @Test
+    public void should_return_exception_for_more_than_10_orders_per_table() {
+
+        List<Order> orders = new ArrayList<>();
+        Collections.addAll(orders,
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.FISH, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"),
+                new Order("Salad", MainMeal.MEAT, "Dessert"));
+
+        assertThatThrownBy(() -> {
+            Table.order(orders);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("You cannot have more than 10 orders for 1 table.");
     }
 }
