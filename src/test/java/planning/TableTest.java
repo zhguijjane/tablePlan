@@ -79,4 +79,13 @@ public class TableTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("You cannot have more than 10 orders for 1 table.");
     }
+
+    @Test
+    public void should_return_no_meal_for_no_order() {
+        List<Order> orders = Collections.emptyList();
+
+        Map<Object, Object> mainMeals = Collections.emptyMap();
+
+        assertThat(Table.order(orders)).isEqualTo(mainMeals);
+    }
 }
