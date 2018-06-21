@@ -1,26 +1,16 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Table {
 
-    public static Map<String, Integer> order(Order order) {
+    public static Map<MainMeal, Integer> order(Order order) {
 
-        HashMap<String, Integer> mainMeal = new HashMap<>();
+        List<Order> orders = Collections.singletonList(order);
 
-        mainMeal.put("Fish", 0);
-        mainMeal.put("Meat", 1);
-
-        return mainMeal;
+        return orders.stream().collect(Collectors.groupingBy(Order::getMainMealChoice, Collectors.summingInt(x -> 1)));
     }
 
-    public static Map<String, Integer> order(List<Order> orders) {
-
-        HashMap<String, Integer> mainMeal = new HashMap<>();
-
-        mainMeal.put("Fish", 1);
-        mainMeal.put("Meat", 1);
-
-        return mainMeal;
+    public static Map<MainMeal, Integer> order(List<Order> orders) {
+        return orders.stream().collect(Collectors.groupingBy(Order::getMainMealChoice, Collectors.summingInt(x -> 1)));
     }
 }

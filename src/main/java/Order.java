@@ -1,11 +1,14 @@
+import lombok.Value;
+
+@Value
 public class Order {
-    private final String salade;
-    private final String viande;
+    private final String salad;
+    private final MainMeal mainMealChoice;
     private final String dessert;
 
-    public Order(String salad, String meat, String dessert) {
-        this.salade = salad;
-        this.viande = meat;
+    public Order(String salad, MainMeal mainMealChoice, String dessert) {
+        this.salad = salad;
+        this.mainMealChoice = mainMealChoice;
         this.dessert = dessert;
     }
 }
