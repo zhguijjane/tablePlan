@@ -4,12 +4,12 @@ import lombok.Value;
 
 @Value
 class Order {
-    private final String salad;
+    private final StarterMeal starterMeal;
     private final MainMeal mainMealChoice;
-    private final String dessert;
+    private final DessertMeal dessert;
 
-    public Order(String salad, MainMeal mainMealChoice, String dessert) {
-        this.salad = salad;
+    public Order(StarterMeal starterMeal, MainMeal mainMealChoice, DessertMeal dessert) {
+        this.starterMeal = starterMeal;
         this.mainMealChoice = mainMealChoice;
         this.dessert = dessert;
     }

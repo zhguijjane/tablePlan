@@ -19,7 +19,7 @@ public class TableTest {
 
     @Test
     public void should_return_1_meat_and_0_fish() {
-        Order firstOrder = new Order("Salad", MainMeal.MEAT, "Dessert");
+        Order firstOrder = new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN);
 
         List<Order> orders = Collections.singletonList(firstOrder);
 
@@ -31,8 +31,8 @@ public class TableTest {
 
     @Test
     public void should_return_1_meat_and_1_fish() {
-        Order firstOrder = new Order("Salad", MainMeal.MEAT, "Dessert");
-        Order secondOrder = new Order("Salad", MainMeal.FISH, "Dessert");
+        Order firstOrder = new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN);
+        Order secondOrder = new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN);
 
         List<Order> orders = Arrays.asList(firstOrder, secondOrder);
 
@@ -47,16 +47,16 @@ public class TableTest {
     public void should_return_3_meat_and_7_fish() {
 
         List<Order> orders = new ArrayList<>();
-        Collections.addAll(orders, new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"));
+        Collections.addAll(orders, new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN));
 
         HashMap<MainMeal, Integer> mainMeals = new HashMap<>();
         mainMeals.put(MainMeal.MEAT, 3);
@@ -70,19 +70,19 @@ public class TableTest {
 
         List<Order> orders = new ArrayList<>();
         Collections.addAll(orders,
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.FISH, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"),
-                new Order("Salad", MainMeal.MEAT, "Dessert"));
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.FISH, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN),
+                new Order(StarterMeal.SALAD, MainMeal.MEAT, DessertMeal.FLAN));
 
         assertThatThrownBy(() -> table.order(orders)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("You cannot have more than 10 orders for 1 table.");
