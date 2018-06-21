@@ -3,7 +3,7 @@ package planning;
 import lombok.Value;
 
 @Value
-public class Order {
+class Order {
     private final String salad;
     private final MainMeal mainMealChoice;
     private final String dessert;

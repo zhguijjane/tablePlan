@@ -1,5 +1,6 @@
 package planning;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -9,14 +10,23 @@ import static org.assertj.core.api.Java6Assertions.assertThatThrownBy;
 
 public class TableTest {
 
+    private Table table;
+
+    @Before
+    public void setUp() {
+        table = new Table();
+    }
+
     @Test
     public void should_return_1_meat_and_0_fish() {
-        Order order = new Order("Salad", MainMeal.MEAT, "Dessert");
+        Order firstOrder = new Order("Salad", MainMeal.MEAT, "Dessert");
+
+        List<Order> orders = Collections.singletonList(firstOrder);
 
         HashMap<MainMeal, Integer> mainMeals = new HashMap<>();
         mainMeals.put(MainMeal.MEAT, 1);
 
-        assertThat(Table.order(order)).isEqualTo(mainMeals);
+        assertThat(table.order(orders)).isEqualTo(mainMeals);
     }
 
     @Test
@@ -30,7 +40,7 @@ public class TableTest {
         mainMeals.put(MainMeal.MEAT, 1);
         mainMeals.put(MainMeal.FISH, 1);
 
-        assertThat(Table.order(orders)).isEqualTo(mainMeals);
+        assertThat(table.order(orders)).isEqualTo(mainMeals);
     }
 
     @Test
@@ -52,7 +62,7 @@ public class TableTest {
         mainMeals.put(MainMeal.MEAT, 3);
         mainMeals.put(MainMeal.FISH, 7);
 
-        assertThat(Table.order(orders)).isEqualTo(mainMeals);
+        assertThat(table.order(orders)).isEqualTo(mainMeals);
     }
 
     @Test
@@ -74,9 +84,7 @@ public class TableTest {
                 new Order("Salad", MainMeal.MEAT, "Dessert"),
                 new Order("Salad", MainMeal.MEAT, "Dessert"));
 
-        assertThatThrownBy(() -> {
-            Table.order(orders);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> table.order(orders)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("You cannot have more than 10 orders for 1 table.");
     }
 
@@ -86,6 +94,6 @@ public class TableTest {
 
         Map<Object, Object> mainMeals = Collections.emptyMap();
 
-        assertThat(Table.order(orders)).isEqualTo(mainMeals);
+        assertThat(table.order(orders)).isEqualTo(mainMeals);
     }
 }
