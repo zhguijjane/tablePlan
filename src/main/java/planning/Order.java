@@ -1,3 +1,5 @@
+package planning;
+
 import lombok.Value;
 
 @Value
